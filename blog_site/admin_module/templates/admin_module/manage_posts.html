@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Manage Posts</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.author.username }}</td>
+                <td>{% if post.is_active %}
+                    Active
+                {% else %}
+                    Blocked
+                {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'block_post' post.id %}" class="btn btn-warning">
+                        {% if not post.is_active %}
+                            Unblock
+                        {% else %}
+                            Block
+                        {% endif %}
+
+                        
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

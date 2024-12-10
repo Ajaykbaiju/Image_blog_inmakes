@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>403 Forbidden</h1>
+    <p>You are not authorized to edit this post.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary">Return to Home</a>
+</div>
+{% endblock %}
